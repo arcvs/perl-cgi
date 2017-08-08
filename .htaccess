@@ -1,0 +1,24 @@
+AddDefaultCharset UTF-8
+DirectoryIndex index.pm
+AddHandler cgi-script .pm
+Options +ExecCGI -Indexes
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule \.htaccess$ -[G]
+
+RewriteCond %{ENV:REDIRECT_FINISH} !^$
+RewriteRule ^ - [L]
+
+RewriteCond %{HTTP_HOST} ^www\.(.*) [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteRule ^(yandex_0ab7605f5981c5b4.html)$ $1 [L]
+
+RewriteRule ^(.+\.((?!pm).){1,5})$ Media/$1 [NC,L,E=FINISH:1]
+
+RewriteRule ^((ru|en)?\/?)?$ index.pm [L]
+RewriteRule ^((ru|en)\/?)?(_?[a-z]*) $3.pm [L]
+
+#ErrorDocument 404  http://avs.com/error

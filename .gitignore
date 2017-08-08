@@ -1,0 +1,7 @@
+Media
+srcMediaFiles
+.hg
+tpl
+logs
+*.un~
+__Config.pm
